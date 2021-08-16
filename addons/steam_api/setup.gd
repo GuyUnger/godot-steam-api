@@ -32,7 +32,7 @@ func steam_appid_file_has_correct_id_() -> bool:
 	var file := File.new()
 	var res := file.open(exe_path_() + "/steam_appid.txt", File.READ)
 	if res == OK:
-		return str(settings.app_id) != file.get_line()
+		return str(settings.app_id) == file.get_line()
 	else:
 		return false
 
