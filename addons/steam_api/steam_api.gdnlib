@@ -13,6 +13,6 @@ X11.64="res://steam/libsteamsdk-godot.so"
 
 [dependencies]
 
-OSX.64=[ "res://steam/libsteam_api.dylib" ]
-Windows.64=[ "res://steam/steam_api64.dll" ]
-X11.64=[ "res://steam/libsteam_api.so" ]
+OSX.64="[res://addons/steam_api/libsteam_api.dylib]"
+Windows.64="[res://addons/steam_api/steam_api64.dll]"
+X11.64="[res://addons/steam_api/libsteam_api.so]"

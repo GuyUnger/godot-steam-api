@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GodotSteamAPI"
-run/main_scene="res://example.tscn"
+run/main_scene="res://addons/steam_api/examples/example.tscn"
 config/icon="res://icon.png"
 
 [autoload]
