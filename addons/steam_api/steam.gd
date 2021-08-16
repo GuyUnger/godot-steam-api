@@ -4,9 +4,10 @@ var api_
 var user_stats_
 
 func _ready():
+	var settings = load("res://addons/steam_api/settings.tres")
 	api_ = SteamAPI.new()
-	if not api_.init(SteamOptions.app_id):
-		push_error("Failed to init steam api. Is Steam running? Did you run the 'run_me_once.gd' tool script?")
+	if not api_.init(settings.app_id):
+		push_error("Failed to init steam api. Is Steam running? Is the plugin activated? Did you do the setup in ProjectSettings > SteamAPI")
 		return
 	
 	user_stats_ = SteamUserStats.new()
