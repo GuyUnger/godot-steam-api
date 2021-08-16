@@ -35,13 +35,13 @@ bbcode_text = "This plugin requires the steam SDK, you must already be a Steam p
 2. Download the SDK at [url=open_sdk_page]https://partner.steamgames.com/downloads/steamworks_sdk.zip[/url]
 3. Unzip the files in any directory on your computer [color=gray](you will not need these anymore after the files are imported)[/color]
 4. Set the SDK Directory to where you unzipped [color=gray](ie. \"C:\\Users\\gabenewell\\Downloads\\sdk\")[/color]
-5. Click \"Import from SDK Directory\""
+5. Click \"Setup\""
 text = "This plugin requires the steam SDK, you must already be a Steam partner to obtain this (Valve's rules, not mine sorry).
 1. Set your Steam App ID (the number next to your steam title on the steamworks page or the number in the store page url)
 2. Download the SDK at https://partner.steamgames.com/downloads/steamworks_sdk.zip
 3. Unzip the files in any directory on your computer (you will not need these anymore after the files are imported)
 4. Set the SDK Directory to where you unzipped (ie. \"C:\\Users\\gabenewell\\Downloads\\sdk\")
-5. Click \"Import from SDK Directory\""
+5. Click \"Setup\""
 fit_content_height = true
 scroll_active = false
 
@@ -89,40 +89,19 @@ size_flags_horizontal = 3
 caret_blink = true
 caret_blink_speed = 0.5
 
-[node name="HSeparator" type="HSeparator" parent="panel/container"]
+[node name="FindSDK" type="Button" parent="panel/container"]
 margin_top = 150.0
 margin_right = 1024.0
-margin_bottom = 154.0
+margin_bottom = 170.0
+size_flags_horizontal = 3
+text = "Setup"
 
 [node name="sdk_status" type="HBoxContainer" parent="panel/container"]
-margin_top = 158.0
+margin_top = 174.0
 margin_right = 1024.0
-margin_bottom = 182.0
-
-[node name="FindSDK" type="Button" parent="panel/container/sdk_status"]
-margin_right = 482.0
-margin_bottom = 24.0
-size_flags_horizontal = 3
-text = "Import from SDK Directory"
-
-[node name="VSeparator" type="VSeparator" parent="panel/container/sdk_status"]
-margin_left = 486.0
-margin_right = 490.0
-margin_bottom = 24.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="title" type="Label" parent="panel/container/sdk_status"]
-margin_left = 494.0
-margin_right = 537.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 0, 24 )
-text = "Status:"
-valign = 1
+margin_bottom = 198.0
 
 [node name="status" type="RichTextLabel" parent="panel/container/sdk_status"]
-margin_left = 541.0
 margin_right = 1024.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 0, 24 )
@@ -175,4 +154,4 @@ __meta__ = {
 [connection signal="meta_clicked" from="panel/container/SDK instructions" to="." method="_on_SDK_instructions_meta_clicked"]
 [connection signal="focus_exited" from="panel/container/app_id/input" to="." method="_on_app_id_focus_exited"]
 [connection signal="focus_exited" from="panel/container/sdk_dir/input" to="." method="_on_sdk_dir_focus_exited"]
-[connection signal="pressed" from="panel/container/sdk_status/FindSDK" to="." method="_on_FindSDK_pressed"]
+[connection signal="pressed" from="panel/container/FindSDK" to="." method="_on_FindSDK_pressed"]

@@ -62,18 +62,30 @@ func _on_SteamAPI_visibility_changed():
 	check_status()
 
 func check_status():
+	var complete:bool = true
 	var file = File.new()
-	var status = "[color=green]Done![/color]"
+	var status_sdk = "[color=green]SDK files imported successfully![/color]"
 	var missing = []
 	if not file.file_exists("res://addons/steam_api/libsteam_api.so"): missing.push_back("linux")
 	if not file.file_exists("res://addons/steam_api/steam_api64.dll"): missing.push_back("windows")
 	if not file.file_exists("res://addons/steam_api/libsteam_api.dylib"): missing.push_back("osx")
 	if missing.size() > 0:
 		if missing.size() == 3:
-			status = "[color=red]No files imported[/color]"
+			status_sdk = "[color=red]SDK files not imported[/color]"
 		else:
-			status = "[color=#ffa500]Partially complete, missing: %s[/color]" % String(missing)
-	status = "[center]%s[/center]" % status
+			status_sdk = "[color=#ffa500]SDK files partially imported, missing: %s[/color]" % String(missing)
+		complete = false
+	
+	var status_id:String
+	if settings.app_id:
+		status_id = "[color=green]App ID set to %s[/color]" % settings.app_id
+	else:
+		status_id = "[color=red]No App ID set[/color]"
+		complete = false
+	
+	var status = str(status_id, "\n", status_sdk)
+	if not complete:
+		status = str(status, "\nPlease follow the instructions above")
 	$panel/container/sdk_status/status.bbcode_text = status
 
 func _on_app_id_focus_exited():
