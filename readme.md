@@ -3,7 +3,7 @@
 
 # Getting Started
 1. Enable the plugin in the Project Settings
-2. Follow the instructions to import Steam SDK files
+2. There will now be a SteamAPI tab in the Project Settings, follow the instructions to import Steam SDK files
 3. Make sure Steam is running
 
 Now you can use the following functions to manage Steam Achievements:
