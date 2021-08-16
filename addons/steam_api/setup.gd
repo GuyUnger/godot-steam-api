@@ -11,8 +11,8 @@ func _ready():
 
 func copy_file_from_steam_sdk_(base_path:String, file_name:String) -> void:
 	print(settings.sdk_dir + base_path + file_name)
-	if not File.new().file_exists("res://steam/%s" % file_name):
-		var res := Directory.new().copy(settings.sdk_dir + base_path + file_name, "res://steam/%s" % file_name)
+	if not File.new().file_exists("res://addons/steam_api/%s" % file_name):
+		var res := Directory.new().copy(settings.sdk_dir + base_path + file_name, "res://addons/steam_api/%s" % file_name)
 		if res != OK:
 			popup_error("Failed to copy %s. Steam integration will not work. Did you set the 'SDK Directory' correctly?" % file_name)
 
@@ -37,9 +37,6 @@ func steam_appid_file_has_correct_id_() -> bool:
 		return false
 
 func debug_setup_() -> void:
-	var dir = Directory.new()
-	dir.open("res://")
-	dir.make_dir("steam")
 	copy_file_from_steam_sdk_("/redistributable_bin/linux64/", "libsteam_api.so")
 	copy_file_from_steam_sdk_("/redistributable_bin/win64/", "steam_api64.dll")
 	copy_file_from_steam_sdk_("/redistributable_bin/osx/", "libsteam_api.dylib")
@@ -57,6 +54,7 @@ func popup_error(message):
 	push_error(message)
 
 func _on_FindSDK_pressed():
+	_ready()
 	debug_setup_()
 	check_status()
 
@@ -67,9 +65,9 @@ func check_status():
 	var file = File.new()
 	var status = "[color=green]Done![/color]"
 	var missing = []
-	if not file.file_exists("res://steam/libsteam_api.so"): missing.push_back("linux")
-	if not file.file_exists("res://steam/steam_api64.dll"): missing.push_back("windows")
-	if not file.file_exists("res://steam/libsteam_api.dylib"): missing.push_back("osx")
+	if not file.file_exists("res://addons/steam_api/libsteam_api.so"): missing.push_back("linux")
+	if not file.file_exists("res://addons/steam_api/steam_api64.dll"): missing.push_back("windows")
+	if not file.file_exists("res://addons/steam_api/libsteam_api.dylib"): missing.push_back("osx")
 	if missing.size() > 0:
 		if missing.size() == 3:
 			status = "[color=red]No files imported[/color]"
